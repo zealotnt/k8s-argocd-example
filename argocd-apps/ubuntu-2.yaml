@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: my-ubuntu-app
+  name: my-ubuntu-app-2
   namespace: argocd
 spec:
   project: default
@@ -17,9 +17,9 @@ spec:
       pruneOlderVersions: true
   template:
     metadata:
-      name: my-ubuntu-app
+      name: my-ubuntu-app-2
     spec:
       containers:
-      - name: my-ubuntu-app
+      - name: my-ubuntu-app-2
         image: zealotnt/ubuntu:24.04
         command: ["sleep", "1"]
