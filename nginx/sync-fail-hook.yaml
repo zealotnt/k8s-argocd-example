@@ -1,17 +1,17 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: post-sync-job
+  name: sync-fail-job
   namespace: test
   annotations:
-    argocd.argoproj.io/hook: PostSync
+    argocd.argoproj.io/hook: SyncFail
     argocd.argoproj.io/hook-delete-policy: HookSucceeded
 spec:
   template:
     spec:
       containers:
-      - name: post-sync-container
+      - name: sync-fail-container
         image: busybox
         command: ["/bin/sh", "-c"]
-        args: ["echo Running post-sync hook; sleep 10"]
+        args: ["echo Sync failed; taking action; sleep 5"]
       restartPolicy: OnFailure
