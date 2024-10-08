@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: my-ubuntu-app
-  namespace: argocd
+  namespace: test
 spec:
   project: default
   source:
@@ -11,7 +11,7 @@ spec:
     path: my-app
   destination:
     server: https://kubernetes.default.svc
-    namespace: argocd
+    namespace: test
   syncPolicy:
     automated:
       pruneOlderVersions: true
