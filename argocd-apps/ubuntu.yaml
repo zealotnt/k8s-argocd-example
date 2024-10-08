@@ -10,14 +10,14 @@ spec:
     path: my-app
   destination:
     server: https://kubernetes.default.svc
-    namespace: default
+    namespace: test
   syncPolicy:
     automated:
       pruneOlderVersions: true
   template:
     metadata:
       name: my-ubuntu-app
-      namespace: default
+      namespace: test
     spec:
       containers:
       - name: my-ubuntu-app
