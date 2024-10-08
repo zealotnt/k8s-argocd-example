@@ -17,7 +17,6 @@ spec:
   template:
     metadata:
       name: my-ubuntu-app
-      namespace: test
     spec:
       containers:
       - name: my-ubuntu-app
