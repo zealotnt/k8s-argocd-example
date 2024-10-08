@@ -10,7 +10,7 @@ spec:
     path: my-app
   destination:
     server: https://kubernetes.default.svc
-    namespace: test
+    namespace: argocd
   syncPolicy:
     automated:
       pruneOlderVersions: true
