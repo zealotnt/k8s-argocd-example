@@ -11,7 +11,11 @@ spec:
     spec:
       containers:
       - name: pre-sync-container
-        image: busybox
+        image: curlimages/curl
         command: ["/bin/sh", "-c"]
-        args: ["echo Running pre-sync hook; sleep 10"]
+        args: [
+          "curl -X POST https://webhook.site/02e02b8d-a843-4a7f-b183-66f03b520363 \
+          -H 'Content-Type: application/json' \
+          -d '{\"event\": \"PreSync\", \"status\": \"started\"}'"
+        ]
       restartPolicy: OnFailure

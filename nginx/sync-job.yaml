@@ -11,7 +11,11 @@ spec:
     spec:
       containers:
       - name: sync-container
-        image: busybox
+        image: curlimages/curl
         command: ["/bin/sh", "-c"]
-        args: ["echo Running sync hook; sleep 5"]
+        args: [
+          "curl -X POST https://webhook.site/02e02b8d-a843-4a7f-b183-66f03b520363 \
+          -H 'Content-Type: application/json' \
+          -d '{\"event\": \"Sync\", \"status\": \"in progress\"}'"
+        ]
       restartPolicy: OnFailure
