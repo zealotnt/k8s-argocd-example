@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: nginx-application-kind
-  namespace: test
+  namespace: argocd
 spec:
   project: default
   source:
@@ -11,7 +11,7 @@ spec:
     targetRevision: 15.9.0
   destination:
     server: https://kubernetes.default.svc
-    namespace: test
+    namespace: argocd
   syncPolicy:
     automated:
       pruneOlderVersions: true
