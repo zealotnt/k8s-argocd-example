@@ -1,0 +1,38 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: "{{ .Values.appLabel }}"-sync-fail-job
+  namespace: {{ .Values.namespace }}
+  annotations:
+    argocd.argoproj.io/hook: SyncFail
+    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
+spec:
+  template:
+    spec:
+      containers:
+      - name: sync-fail-container
+        image: curlimages/curl
+        command: ["/bin/sh", "-c"]
+        args: [
+          "curl -X POST https://webhook.site/02e02b8d-a843-4a7f-b183-66f03b520363 \
+          -H 'Content-Type: application/json' \
+          -d '{\"event\": \"SyncFail\", \"status\": \"failed\", \"pod_name\": \"$(POD_NAME)\", \"pod_namespace\": \"$(POD_NAMESPACE)\", \"pod_ip\": \"$(POD_IP)\", \"node_name\": \"$(NODE_NAME)\"}'"
+        ]
+        env:
+        - name: POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        - name: POD_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        - name: POD_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.podIP
+        - name: NODE_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+      restartPolicy: OnFailure
