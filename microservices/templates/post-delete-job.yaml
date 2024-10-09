@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: "{{ .Values.appLabel }}"-post-delete-job
+  name: {{ .Values.appLabel }}-post-delete-job
   namespace: {{ .Values.namespace }}
   annotations:
     argocd.argoproj.io/hook: PostDelete
