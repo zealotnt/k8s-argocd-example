@@ -1,4 +1,4 @@
-appCommand: ["sleep", "1"]
+appCommand: ["/bin/sh", "-c", "while true; do sleep 1; done"]
 appArgs: []
 appLabel: applabel-example
 repoLabel: repolabel-example
