@@ -2,6 +2,3 @@ apiVersion: v1
 kind: Namespace
 metadata:
   name: test
-  finalizers:
-    # The default behaviour is foreground cascading deletion
-    - resources-finalizer.argocd.argoproj.io
