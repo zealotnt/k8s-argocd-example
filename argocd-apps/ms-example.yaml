@@ -15,7 +15,7 @@ spec:
     helm:
       valueFiles:
       - values.yaml
-      - values/ms-example/values.yaml
+      - values/ms-example.yaml
     path: microservices
     repoURL: https://github.com/zealotnt/k8s-argocd-example.git
     targetRevision: HEAD
