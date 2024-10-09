@@ -26,8 +26,10 @@ spec:
         - name: "{{ .Values.appLabel }}"
           image: "{{ .Values.image }}"
           imagePullPolicy: IfNotPresent
-          command: {{ .Values.appCommand }}
-          args: {{ .Values.appArgs }}
+          command:
+            {{ toYaml .Values.appCommands | nindent 10 }}
+          args:
+            {{ toYaml .Values.appArgs | nindent 10 }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           ports:
