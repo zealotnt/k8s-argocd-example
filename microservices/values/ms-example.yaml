@@ -12,3 +12,6 @@ resources:
     memory: "256Mi"
 containerhttpPort: 80
 containerhttpsPort: 443
+env:
+  ENV_1: env_1
+  ENV_2: env_2

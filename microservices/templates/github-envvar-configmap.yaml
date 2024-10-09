@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: "{{ .Values.appLabel }}-github-env"
+  namespace: {{ .Values.namespace }}
+data:
+  {{- range $key, $value := .Values.env }}
+  {{ $key }}: |-
+    {{- $value | b64dec | nindent 4 }}
+  {{- end }}
