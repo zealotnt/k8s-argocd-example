@@ -1,5 +1,5 @@
-appLabel: appLabel-example
-repoLabel: repoLabel-example
+appLabel: applabel-example
+repoLabel: repolabel-example
 namespace: default
 replicasCount: 1
 image: zealotnt/ubuntu:24.04
