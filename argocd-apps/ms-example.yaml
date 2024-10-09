@@ -8,7 +8,7 @@ metadata:
     - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
-    namespace: ms-example
+    namespace: default
     server: https://kubernetes.default.svc
   project: default
   source:
@@ -27,6 +27,6 @@ spec:
   - group: ""
     kind: Secret
     name: ms-example-github-secrets
-    namespace: ms-example
+    namespace: default
     jsonPointers:
     - /data
