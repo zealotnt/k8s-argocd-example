@@ -1,3 +1,5 @@
+appCommand: sleep
+appArgs: 1
 appLabel: applabel-example
 repoLabel: repolabel-example
 namespace: default
