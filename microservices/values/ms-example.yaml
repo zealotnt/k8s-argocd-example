@@ -1,0 +1,14 @@
+appLabel: appLabel-example
+repoLabel: repoLabel-example
+namespace: ms-example
+replicasCount: 1
+image: zealotnt/ubuntu:24.04
+resources:
+  limits:
+    cpu: "250m"
+    memory: "256Mi"
+  requests:
+    cpu: "250m"
+    memory: "256Mi"
+containerhttpPort: 80
+containerhttpsPort: 443

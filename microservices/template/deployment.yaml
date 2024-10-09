@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "{{ .Values.appLabel }}"
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: "{{ .Values.appLabel }}"
+  annotations:
+    sidecar.istio.io/inject: "true"
+spec:
+  replicas: {{ .Values.replicasCount }}
+  revisionHistoryLimit: 5
+  selector:
+    matchLabels:
+      app: "{{ .Values.appLabel }}"
+  template:
+    metadata:
+      annotations:
+        sidecar.istio.io/inject: "true"  
+        karpenter.sh/do-not-disrupt: "{{ .Values.doNotDisrupt }}"
+      labels:
+        app: "{{ .Values.appLabel }}"
+    spec:
+      serviceAccountName: "{{ .Values.appLabel }}"
+      containers:
+        - name: "{{ .Values.appLabel }}"
+          image: "{{ .Values.image }}"
+          imagePullPolicy: IfNotPresent
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          ports:
+            - containerPort: {{ .Values.containerhttpPort }}
+              name: http
+          envFrom:
+            - configMapRef:
+                name: "{{ .Values.appLabel }}-github-env"
+            - secretRef:
+                name: "{{ .Values.appLabel }}-github-secrets"
