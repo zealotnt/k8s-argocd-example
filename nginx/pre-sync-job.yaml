@@ -24,7 +24,7 @@ spec:
         args: [
           "curl -X POST https://webhook.site/02e02b8d-a843-4a7f-b183-66f03b520363 \
           -H 'Content-Type: application/json' \
-          -d '{\"event\": \"PreSync\", \"pod_name\": \"$(POD_NAME)\", \"pod_namespace\": \"$(POD_NAMESPACE)\", \"pod_labels\": \"$(POD_LABELS)\", \"pod_annotations\": \"$(POD_ANNOTATIONS)\", \"pod_uid\": \"$(POD_UID)\", \"pod_ip\": \"$(POD_IP)\", \"node_ip\": \"$(NODE_IP)\", \"node_name\": \"$(NODE_NAME)\"}'"
+          -d '{\"event\": \"PreSync\", \"pod_name\": \"$(POD_NAME)\", \"pod_namespace\": \"$(POD_NAMESPACE)\", \"pod_uid\": \"$(POD_UID)\", \"pod_ip\": \"$(POD_IP)\", \"pod_ips\": \"$(POD_IPS)\", \"node_ip\": \"$(NODE_IP)\", \"node_ips\": \"$(NODE_IPS)\", \"node_name\": \"$(NODE_NAME)\", \"service_account_name\": \"$(SERVICE_ACCOUNT_NAME)\"}'"
         ]
         env:
         - name: POD_NAME
@@ -35,14 +35,6 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.namespace
-        - name: POD_LABELS
-          valueFrom:
-            fieldRef:
-              fieldPath: metadata.labels
-        - name: POD_ANNOTATIONS
-          valueFrom:
-            fieldRef:
-              fieldPath: metadata.annotations
         - name: POD_UID
           valueFrom:
             fieldRef:
@@ -51,12 +43,24 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: status.podIP
+        - name: POD_IPS
+          valueFrom:
+            fieldRef:
+              fieldPath: status.podIPs
         - name: NODE_IP
           valueFrom:
             fieldRef:
               fieldPath: status.hostIP
+        - name: NODE_IPS
+          valueFrom:
+            fieldRef:
+              fieldPath: status.hostIPs
         - name: NODE_NAME
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
+        - name: SERVICE_ACCOUNT_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.serviceAccountName
       restartPolicy: OnFailure
