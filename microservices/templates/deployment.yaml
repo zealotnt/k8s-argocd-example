@@ -22,6 +22,7 @@ spec:
         app: "{{ .Values.appLabel }}"
     spec:
       serviceAccountName: "{{ .Values.appLabel }}"
+      terminationGracePeriodSeconds: 0
       containers:
         - name: "{{ .Values.appLabel }}"
           image: "{{ .Values.image }}"
