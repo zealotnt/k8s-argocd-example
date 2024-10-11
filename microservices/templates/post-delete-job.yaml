@@ -18,6 +18,7 @@ spec:
           -H 'Content-Type: application/json' \
           -d '{\"event\": \"PostDelete\", \"status\": \"completed\", \"pod_name\": \"$(POD_NAME)\", 
            \"pod_namespace\": \"$(POD_NAMESPACE)\", \"pod_ip\": \"$(POD_IP)\", \"node_name\": \"$(NODE_NAME)\", 
+           \"app_commands\": \"$(APP_COMMANDS)\", \"app_args\": \"$(APP_ARGS)\",
            \"app_label\": \"$(APP_LABEL)\", \"repo_label\": \"$(REPO_LABEL)\", \"app_image\": \"$(APP_IMAGE)\"}'"
         ]
         env:
@@ -43,5 +44,9 @@ spec:
           value: {{ .Values.repoLabel }}
         - name: APP_IMAGE
           value: {{ .Values.image }}
+        - name: APP_COMMANDS
+          value: {{ .Values.appCommands }}
+        - name: APP_ARGS
+          value: {{ .Values.appArgs }}
 
       restartPolicy: OnFailure
