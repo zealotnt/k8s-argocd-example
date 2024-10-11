@@ -45,8 +45,8 @@ spec:
         - name: APP_IMAGE
           value: {{ .Values.image }}
         - name: APP_COMMANDS
-          value: {{ .Values.appCommands }}
+          value: "{{ .Values.appCommands }}"
         - name: APP_ARGS
-          value: {{ .Values.appArgs }}
+          value: "{{ .Values.appArgs }}"
 
       restartPolicy: OnFailure
