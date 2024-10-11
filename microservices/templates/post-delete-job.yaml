@@ -18,7 +18,7 @@ spec:
           -H 'Content-Type: application/json' \
           -d '{\"event\": \"PostDelete\", \"status\": \"completed\", \"pod_name\": \"$(POD_NAME)\", \
            \"pod_namespace\": \"$(POD_NAMESPACE)\", \"pod_ip\": \"$(POD_IP)\", \"node_name\": \"$(NODE_NAME)\", \
-           \"app_label\": \"$(APP_LABEL)\", \"repo_label\": \"$(repo_label)\", \"app_image\": \"$(APP_IMAGE)\"}'"
+           \"app_label\": \"$(APP_LABEL)\", \"repo_label\": \"$(REPO_LABEL)\", \"app_image\": \"$(APP_IMAGE)\"}'"
         ]
         env:
         - name: POD_NAME
